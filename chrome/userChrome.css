@@ -1,0 +1,92 @@
+/* 
+ NOTES:
+ - [inFullscreen="true"] = Full screen active
+ - [chromehidden]:not([chromehidden=""]) = Window with hidden elements. Typically a popup window
+*/
+:root{
+    --color-main-rgb: rgba(0, 53, 94, 1);
+    --color-secondary-rgb: rgba(0, 103, 182, 1);
+
+    --color-main-private-rgb: rgba(49, 2, 54, 1);
+    --color-secondary-private-rgb: rgba(111, 9, 121, 1);
+
+    --border-radius: 8px;
+    --gap-size: 5px;
+}
+
+/* Set gradients for normal & private browsing */
+#main-window {
+    background: var(--color-main-rgb);
+    background: linear-gradient(135deg, var(--color-main-rgb) 29%, var(--color-secondary-rgb) 100%);
+}
+
+#main-window[privatebrowsingmode] {
+    background: var(--color-private-main-rgb);
+    background: linear-gradient(135deg, var(--color-main-private-rgb) 29%, var(--color-secondary-private-rgb) 100%);
+}
+
+/* Make browser controles transparent */
+#navigator-toolbox,
+#sidebar-main{
+    background-color: transparent !important;
+}
+:root[lwtheme] #sidebar-main, 
+:root[lwtheme] #sidebar-box {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+#navigator-toolbox {
+    border-bottom: none !important;
+}
+
+/* Top bar spacing */
+#navigator-toolbox{
+    margin: var(--gap-size);
+}
+[inFullscreen="true"] #navigator-toolbox,
+[chromehidden]:not([chromehidden=""])  #navigator-toolbox{
+    margin: 0;
+}
+
+/* Min/max/close button radius */
+.titlebar-button {
+    border-radius: var(--border-radius);
+}
+
+/* Browser radius */
+#tabbrowser-tabbox{
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+[inFullscreen="true"] #tabbrowser-tabbox,
+[chromehidden]:not([chromehidden=""])  #tabbrowser-tabbox{
+    border-radius: 0;
+}
+
+/* Browser spacing */
+#browser{
+    margin: var(--gap-size);
+    margin-top: 0;
+}
+[inFullscreen="true"] #browser,
+[chromehidden]:not([chromehidden=""]) #browser{
+    margin: 0;
+}
+
+/* Sidebar pinned tab separator */
+#tabbrowser-tabs[expanded] > #vertical-pinned-tabs-container-separator {
+    display: block !important;
+}
+
+/* Sidebar resizing */
+#sidebar-main > [expanded]{
+    resize: horizontal;
+    overflow: auto;
+    max-width: 33vw;
+    min-width: 245.85px;
+}
+
+/* Reset sidebar width when collapsed */
+#sidebar-main > :not([expanded]){
+    width: auto !important;
+}
